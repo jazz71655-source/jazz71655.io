@@ -302,16 +302,16 @@ footer { background:var(--black); padding:2.5rem 4rem; display:flex; align-items
     <h2 class="stitle" id="c-title">お問い合わせ</h2>
     <div class="sdiv"></div>
     <span class="cintro" id="c-intro">英語調査・交渉代行、市場参入支援、通訳・アテンドサービスなど、お気軽にご相談ください。大阪を拠点として国内外のご要望に対応いたします。</span>
-    <form class="cform" onsubmit="return doSubmit(this)">
+    <form class="cform" action="https://formspree.io/f/xqedwwpj" method="POST">
       <div class="frow">
-        <div class="fg"><label id="fl-name">お名前 *</label><input type="text" required></div>
-        <div class="fg"><label id="fl-co">会社名</label><input type="text"></div>
+        <div class="fg"><label id="fl-name">お名前 *</label><input type="text" name="name" required></div>
+        <div class="fg"><label id="fl-co">会社名</label><input type="text" name="company"></div>
       </div>
       <div class="frow">
-        <div class="fg"><label id="fl-email">メールアドレス *</label><input type="email" required></div>
-        <div class="fg"><label id="fl-type">お問い合わせ種別</label><select id="c-sel"></select></div>
+        <div class="fg"><label id="fl-email">メールアドレス *</label><input type="email" name="email" required></div>
+        <div class="fg"><label id="fl-type">お問い合わせ種別</label><select id="c-sel" name="inquiry"></select></div>
       </div>
-      <div class="fg"><label id="fl-msg">メッセージ *</label><textarea required></textarea></div>
+      <div class="fg"><label id="fl-msg">メッセージ *</label><textarea name="message" required></textarea></div>
       <div class="fsub">
         <button type="submit" class="sbtn" id="c-btn">送 信</button>
         <p class="fnote" id="c-note">通常2営業日以内にご返信いたします。</p>
@@ -431,18 +431,7 @@ function setLang(lang) {
   document.documentElement.lang = lang==='jp'?'ja':'en';
 }
 
-function doSubmit(f) {
-  var btn=document.getElementById('c-btn');
-  var lang=document.getElementById('bjp').classList.contains('on')?'jp':'en';
-  btn.textContent = lang==='jp'?'送信完了 ✓':'Sent ✓';
-  btn.style.background='#c9a84c'; btn.style.color='#0a0a0a';
-  setTimeout(function(){
-    btn.textContent = lang==='jp'?'送 信':'Send';
-    btn.style.background=''; btn.style.color='';
-    f.reset();
-  },3000);
-  return false;
-}
+
 
 setLang('jp');
 </script>
