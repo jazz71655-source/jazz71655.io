@@ -68,6 +68,10 @@ section { padding:6rem 4rem; }
 .photo-frame { position:absolute; inset:-5px; border:1px solid rgba(201,168,76,0.3); pointer-events:none; }
 .yrs { width:220px; padding:1.1rem; background:var(--dark); text-align:center; }
 .name-box { width:220px; padding:0.9rem 1rem; background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.25); text-align:center; }
+.linkedin-box { width:220px; padding:0.7rem 1rem; background:#0a66c2; text-align:center; transition:background 0.3s; }
+.linkedin-box:hover { background:#0856a8; }
+.linkedin-box a { color:#fff; text-decoration:none; font-size:0.75rem; letter-spacing:0.1em; display:flex; align-items:center; justify-content:center; gap:0.5rem; }
+.linkedin-icon { font-size:0.9rem; font-weight:bold; }
 .name-role { display:block; font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.3rem; }
 .name-main { display:block; font-family:'Noto Serif JP',serif; font-size:1rem; font-weight:400; color:var(--cream); letter-spacing:0.05em; }
 .yrs-n { font-family:'Cormorant Garamond',serif; font-size:2.6rem; color:var(--gold); font-weight:300; line-height:1; }
@@ -198,6 +202,11 @@ footer { background:var(--black); padding:2.5rem 4rem; display:flex; align-items
       <div class="name-box">
         <span class="name-role" id="name-role">代表</span>
         <span class="name-main" id="name-main">前田 康夫</span>
+      </div>
+      <div class="linkedin-box">
+        <a href="https://www.linkedin.com/in/ymaeda/" target="_blank">
+          <span class="linkedin-icon">in</span> LinkedIn
+        </a>
       </div>
       <div class="yrs">
         <div class="yrs-n">30<span style="font-size:1.1rem">+</span></div>
