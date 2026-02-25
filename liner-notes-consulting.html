@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ライナーノーツコンサルティング | Liner Notes Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111418;
+    --charcoal: #1e2428;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f5f0e8;
+    --cream-light: #faf7f2;
+    --text: #2c2c2c;
+    --text-light: #666;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--cream-light);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
+  }
+  .hero-line {
+    position: absolute; top: 0; bottom: 0; left: 55%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.3) 30%, rgba(201,168,76,0.3) 70%, transparent);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 8rem 4rem 4rem;
+    max-width: 720px;
+  }
+  .hero-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.3s;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--white);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.5s;
+  }
+  .hero-title-jp {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--gold);
+    font-size: clamp(1rem, 2vw, 1.6rem);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    margin-bottom: 2.5rem;
+    white-space: nowrap;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.7s;
+  }
+  .hero-role {
+    font-family: 'Cormorant Garamond', serif;
+    color: rgba(255,255,255,0.65);
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+    max-width: 520px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.9s;
+  }
+  .hero-location {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.1s;
+  }
+  .hero-cta {
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.3s;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    transition: all 0.4s;
+  }
+  .btn-primary:hover { background: var(--gold); color: var(--dark); }
+
+  /* SECTIONS */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+    font-size: 0.78rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+  }
+  .divider { width: 3rem; height: 1px; background: var(--gold); margin-bottom: 3rem; }
+
+
+  /* MESSAGE */
+  .message {
+    background: var(--charcoal);
+    padding: 7rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .message::before {
+    content: '"';
+    position: absolute;
+    top: -1rem;
+    left: 3rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18rem;
+    color: rgba(201,168,76,0.06);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .message-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .message-body {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.05rem;
+    line-height: 2.4;
+    color: rgba(255,255,255,0.82);
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  .message-body p {
+    margin-bottom: 1.6rem;
+  }
+  .message-closing {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold-light);
+    border-left: 2px solid var(--gold);
+    padding-left: 1.5rem;
+    line-height: 1.8;
+  }
+
+  /* ABOUT */
+  .about { background: var(--white); }
+  .about-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-left { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
+  .about-portrait {
+    width: 140px; height: 158px;
+    background: var(--charcoal);
+    position: relative; overflow: hidden;
+  }
+  .about-portrait-inner {
+    position: absolute; inset: 0;
+    overflow: hidden;
+  }
+  .about-portrait-inner img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+  }
+  .about-portrait-frame {
+    position: absolute; inset: -6px;
+    border: 1px solid rgba(201,168,76,0.35);
+    pointer-events: none;
+  }
+  .about-years {
+    width: 140px;
+    padding: 1.2rem 1rem;
+    background: var(--dark);
+    color: var(--cream);
+    text-align: center;
+  }
+  .about-years-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    color: var(--gold);
+    font-weight: 300;
+    line-height: 1;
+  }
+  .about-years-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.4rem;
+    line-height: 1.5;
+  }
+
+  .about-text {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.95rem;
+    line-height: 2.2;
+    color: var(--text);
+    font-weight: 300;
+    margin-bottom: 1.8rem;
+  }
+  .about-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+  .highlight-item {
+    padding: 1.2rem 1.4rem;
+    border-left: 2px solid var(--gold);
+    background: var(--cream-light);
+  }
+  .highlight-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .highlight-value {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.6;
+    white-space: nowrap;
+  }
+
+  /* PRODUCTS */
+  .products-section { margin-top: 2.5rem; }
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+    margin-top: 1rem;
+  }
+  .product-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--cream-light);
+    border: 1px solid #e8e0d0;
+    transition: border-color 0.3s;
+  }
+  .product-item:hover { border-color: var(--gold); }
+  .product-icon { color: var(--gold); font-size: 0.65rem; margin-top: 0.35rem; flex-shrink: 0; }
+  .product-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 0.15rem;
+    white-space: nowrap;
+  }
+  .product-sub { font-size: 0.7rem; color: var(--text-light); white-space: nowrap; }
+
+  /* SERVICES */
+  .services { background: var(--dark); color: var(--white); }
+  .services-inner { max-width: 1100px; margin: 0 auto; }
+  .services .section-title { color: var(--cream); white-space: nowrap; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 1rem;
+  }
+  .service-card {
+    background: var(--charcoal);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--gold);
+    transform: scaleX(0); transition: transform 0.4s;
+  }
+  .service-card:hover { background: #252b30; }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; color: rgba(201,168,76,0.15);
+    font-weight: 300; line-height: 1; margin-bottom: 1.5rem;
+  }
+  .service-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.95rem; font-weight: 400;
+    color: var(--gold-light); margin-bottom: 1rem;
+    white-space: nowrap;
+  }
+  .service-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.9; font-weight: 300;
+  }
+  .services-tags {
+    margin-top: 3rem;
+    display: flex; flex-wrap: wrap; gap: 0.8rem;
+  }
+  .tag {
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.72rem; letter-spacing: 0.08em;
+  }
+
+  /* CONTACT */
+  .contact { background: var(--cream-light); }
+  .contact-inner { max-width: 800px; margin: 0 auto; }
+  .contact .section-title { white-space: nowrap; }
+  .contact-intro {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.95rem; line-height: 2.2;
+    color: var(--text-light); font-weight: 300; margin-bottom: 3rem;
+  }
+  .contact-form { display: grid; gap: 1.5rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-group label {
+    font-size: 0.72rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-light);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.9rem 1rem;
+    border: 1px solid #ddd; border-bottom: 2px solid #ddd;
+    background: var(--white);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.87rem; color: var(--text);
+    outline: none; transition: border-color 0.3s; appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-bottom-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 140px; }
+  .form-submit { display: flex; align-items: center; gap: 2rem; margin-top: 1rem; }
+  .btn-submit {
+    padding: 1rem 3rem;
+    background: var(--dark); color: var(--gold);
+    border: none; font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.2em; cursor: pointer; transition: all 0.3s;
+  }
+  .btn-submit:hover { background: var(--gold); color: var(--dark); }
+  .form-note { font-size: 0.75rem; color: var(--text-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black); padding: 3rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 1rem; letter-spacing: 0.15em; }
+  .footer-copy { color: rgba(255,255,255,0.3); font-size: 0.72rem; letter-spacing: 0.1em; }
+  .footer-location { color: rgba(255,255,255,0.3); font-size: 0.72rem; letter-spacing: 0.1em; text-align: right; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    section { padding: 5rem 2rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .hero-content { padding: 7rem 2rem 4rem; }
+    .hero-line { display: none; }
+    .section-title { white-space: normal; }
+    .service-title { white-space: normal; }
+    .highlight-value { white-space: normal; }
+    .product-name { white-space: normal; }
+    .product-sub { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">LINER NOTES CONSULTING</a>
+  <ul class="nav-links">
+    <li><a href="#about">概要</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Executive Consultant</p>
+    <h1 class="hero-title">前田 康夫</h1>
+    <p class="hero-title-jp">ライナーノーツコンサルティング 代表</p>
+    <p class="hero-role">
+      映像制作ソリューションのスペシャリスト。<br>
+      映像業界の深い知識と英語力を活かし、<br>
+      調査・報告・交渉を一貫してサポートします。
+    </p>
+    <p class="hero-location">📍 大阪, 日本</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- MESSAGE -->
+<section class="message">
+  <div class="message-inner">
+    <p class="section-label reveal" style="color: var(--gold);">Message</p>
+    <h2 class="section-title reveal" style="color: var(--cream); margin-bottom: 2.5rem; white-space: normal;">映像制作の４０年と、これからの時代へ</h2>
+    <div class="divider reveal"></div>
+    <div class="message-body reveal">
+      <p>映像制作は1980年代から大きな変革を遂げました。フィルムから磁気ベースのVTRやカメラへ、そしてフラッシュメモリーをストレージにしたカメラ・サーバー・編集システムが当たり前になり、ソリューションによってはこの30年でその価格は100分の1にまで下がりました。</p>
+      <p>クラウドへ移行するソリューションが主流となり、映像フォーマットは高圧縮しても画質が維持されるようになり、クラウドを越えたグローバルネットワークも実現しました。そして今、生成AIをはじめとしたAIの機能が映像制作ソリューションの新たな時代を切り拓こうとしています。</p>
+    </div>
+    <div class="message-closing reveal">
+      この30年間、映像技術のイノベーションに伴奏してきた当社のコンサルタントが、<br>
+      新たな映像ソリューションによるOMO・DCXの実現に貢献します。
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <div class="about-portrait">
+        <div class="about-portrait-inner">
+          <img src="data:image/png;base64,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" alt="前田康夫" />
+        </div>
+        <div class="about-portrait-frame"></div>
+      </div>
+      <div class="about-years">
+        <div class="about-years-num">30<span style="font-size:1.2rem">+</span></div>
+        <div class="about-years-label">年間の業界経験<br>パナソニック</div>
+      </div>
+    </div>
+
+    <div class="about-right">
+      <p class="section-label reveal">About</p>
+      <h2 class="section-title reveal">エグゼクティブ コンサルタント</h2>
+      <div class="divider reveal"></div>
+
+      <p class="about-text reveal">
+        パナソニックのグローバルプロダクトマネージャーとして30年以上、放送・シネマ業界の最前線で活躍。ロンドン五輪IBC（国際放送センター）でのスタジオソリューション設計から、西欧における高品位シネマワークフローの導入まで、映像制作の幅広い領域に精通しています。
+      </p>
+      <p class="about-text reveal">
+        現在は映像業界の深い専門知識と長年培った英語力・ネットワークを活かし、国内外の企業に対して市場調査・英語での交渉代行・ビジネスレポーティングを提供しています。専門用語を正確に理解した上での英語調査・報告・交渉が強みです。スイス・ポーランドのIrix Lensの日本市場参入アドバイザーも務めています。
+      </p>
+
+      <div class="about-highlights reveal">
+        <div class="highlight-item">
+          <div class="highlight-label">専門領域</div>
+          <div class="highlight-value">映像制作・放送・シネマ業界</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-label">対応エリア</div>
+          <div class="highlight-value">大阪・京都・兵庫（関西全域）</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-label">現在のプロジェクト</div>
+          <div class="highlight-value">Irix Lens 日本市場参入支援</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-label">言語対応</div>
+          <div class="highlight-value">日本語・英語（通訳・交渉）</div>
+        </div>
+      </div>
+
+      <div class="products-section reveal">
+        <p class="section-label" style="margin-top:2.5rem; margin-bottom:1rem;">パナソニック時代の担当製品</p>
+        <div class="products-grid">
+          <div class="product-item">
+            <span class="product-icon">▸</span>
+            <div>
+              <div class="product-name">KAIROS</div>
+              <div class="product-sub">2110/IPMX対応 IPビデオスイッチャー</div>
+            </div>
+          </div>
+          <div class="product-item">
+            <span class="product-icon">▸</span>
+            <div>
+              <div class="product-name">VARICAM</div>
+              <div class="product-sub">高品位シネマカメラ</div>
+            </div>
+          </div>
+          <div class="product-item">
+            <span class="product-icon">▸</span>
+            <div>
+              <div class="product-name">ビデオサーバー</div>
+              <div class="product-sub">放送向け収録・再生システム</div>
+            </div>
+          </div>
+          <div class="product-item">
+            <span class="product-icon">▸</span>
+            <div>
+              <div class="product-name">アーカイブシステム</div>
+              <div class="product-sub">長期保存・資産管理ソリューション</div>
+            </div>
+          </div>
+          <div class="product-item">
+            <span class="product-icon">▸</span>
+            <div>
+              <div class="product-name">コンテンツマネージメントシステム</div>
+              <div class="product-sub">放送・制作向けCMS</div>
+            </div>
+          </div>
+          <div class="product-item">
+            <span class="product-icon">▸</span>
+            <div>
+              <div class="product-name">Quick Cutter</div>
+              <div class="product-sub">ノンリニア編集システム</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <p class="section-label reveal">Services</p>
+    <h2 class="section-title reveal">提供サービス</h2>
+    <div class="divider reveal"></div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <div class="service-title">英語調査・市場リサーチ</div>
+        <div class="service-desc">映像業界の専門用語を正確に理解した上で、英語での市場調査・競合分析・製品リサーチを実施。日本語でわかりやすくレポーティングします。</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">02</div>
+        <div class="service-title">英語交渉・ビジネス代行</div>
+        <div class="service-desc">海外メーカーや海外パートナーとの交渉・商談を英語で代行。映像業界の商慣習・技術背景を踏まえた実践的なコミュニケーションを提供します。</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">03</div>
+        <div class="service-title">日本市場参入支援</div>
+        <div class="service-desc">海外映像関連ブランドの日本市場への参入を総合的にサポート。技術仕様のローカライズから販促活動の管理まで、エンドツーエンドで対応します。</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <div class="service-title">通訳・アテンドサービス</div>
+        <div class="service-desc">映像業界の専門知識を持つ通訳として商談・技術視察に同行。大阪・京都・兵庫エリアを中心に、VIPアテンドにも対応します。</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">05</div>
+        <div class="service-title">ブランド・マーケティング支援</div>
+        <div class="service-desc">マーケットリサーチ、PR、ブランドコンサルティング、トレードショー出展支援など、映像関連ビジネスの販売促進を幅広くサポートします。</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">06</div>
+        <div class="service-title">映像制作・ライブ配信</div>
+        <div class="service-desc">国内の豊富なプロフェッショナル制作パートナーネットワークを通じた映像制作・ライブ配信サービス。編集・ソフトウェアテストにも対応します。</div>
+      </div>
+    </div>
+
+    <div class="services-tags reveal">
+      <span class="tag">英語調査・リサーチ</span>
+      <span class="tag">英語交渉代行</span>
+      <span class="tag">マーケットリサーチ</span>
+      <span class="tag">パブリックリレーションズ</span>
+      <span class="tag">ビジネスコンサルティング</span>
+      <span class="tag">トレーニング</span>
+      <span class="tag">ブランドコンサルティング</span>
+      <span class="tag">交渉代行</span>
+      <span class="tag">トレードショー出展支援</span>
+      <span class="tag">ソフトウェアテスト</span>
+      <span class="tag">通訳・アテンド</span>
+      <span class="tag">映像制作・ライブ配信</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <p class="section-label reveal">Contact</p>
+    <h2 class="section-title reveal">お問い合わせ</h2>
+    <div class="divider reveal"></div>
+    <p class="contact-intro reveal">
+      英語調査・交渉代行、市場参入支援、通訳・アテンドサービスなど、お気軽にご相談ください。大阪を拠点として国内外のご要望に対応いたします。
+    </p>
+
+    <form class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>お名前 *</label>
+          <input type="text" placeholder="山田 太郎" required>
+        </div>
+        <div class="form-group">
+          <label>会社名</label>
+          <input type="text" placeholder="株式会社○○">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>メールアドレス *</label>
+          <input type="email" placeholder="info@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>お問い合わせ種別</label>
+          <select>
+            <option value="">選択してください</option>
+            <option>英語調査・リサーチ</option>
+            <option>英語交渉代行</option>
+            <option>日本市場参入支援</option>
+            <option>通訳・アテンドサービス</option>
+            <option>映像制作・ライブ配信</option>
+            <option>その他</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>メッセージ *</label>
+        <textarea placeholder="ご用件をお聞かせください。お気軽にどうぞ。" required></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-submit">送 信</button>
+        <p class="form-note">通常2営業日以内にご返信いたします。</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">LINER NOTES CONSULTING</div>
+  <div class="footer-copy">© 2025 Liner Notes Consulting. All rights reserved.</div>
+  <div class="footer-location">大阪, 日本<br>前田 康夫</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  document.querySelector('.contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.btn-submit');
+    btn.textContent = '送信完了 ✓';
+    btn.style.background = '#c9a84c';
+    btn.style.color = '#0a0a0a';
+    setTimeout(() => {
+      btn.textContent = '送 信';
+      btn.style.background = '';
+      btn.style.color = '';
+      this.reset();
+    }, 3000);
+  });
+</script>
+</body>
+</html>
