@@ -302,7 +302,14 @@ footer { background:var(--black); padding:2.5rem 4rem; display:flex; align-items
     <h2 class="stitle" id="c-title">お問い合わせ</h2>
     <div class="sdiv"></div>
     <span class="cintro" id="c-intro">英語調査・交渉代行、市場参入支援、通訳・アテンドサービスなど、お気軽にご相談ください。大阪を拠点として国内外のご要望に対応いたします。</span>
-    <form class="cform" action="https://formspree.io/f/xqedwwpj" method="POST">
+    <div style="margin-bottom:2rem; padding:1.2rem 1.5rem; background:#fff; border-left:2px solid #c9a84c; display:flex; align-items:center; gap:1rem;">
+  <span style="color:#c9a84c; font-size:1.2rem;">✉</span>
+  <div>
+    <div style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#999; margin-bottom:0.2rem;" id="email-label">メールでのお問い合わせ</div>
+    <a href="mailto:jazz71655@gmail.com" style="color:#1e2428; font-size:0.95rem; text-decoration:none; font-family:'Noto Serif JP',serif; font-weight:400;">jazz71655@gmail.com</a>
+  </div>
+</div>
+<form class="cform" action="https://formspree.io/f/xqedwwpj" method="POST">
       <div class="frow">
         <div class="fg"><label id="fl-name">お名前 *</label><input type="text" name="name" required></div>
         <div class="fg"><label id="fl-co">会社名</label><input type="text" name="company"></div>
@@ -357,7 +364,7 @@ var L = {
     s4t:'通訳・アテンドサービス', s4d:'映像業界の専門知識を持つ通訳として商談・技術視察に同行。大阪・京都・兵庫エリアを中心に、VIPアテンドにも対応します。',
     s5t:'ブランド・マーケティング・D2C支援', s5d:'マーケットリサーチ、PR、ブランドコンサルティング、トレードショー出展支援に加え、D2C戦略の立案・実行支援、ホームページ制作まで、映像関連ビジネスの販売促進を幅広くサポートします。',
     s6t:'映像制作・ライブ配信', s6d:'国内の豊富なプロフェッショナル制作パートナーネットワークを通じた映像制作・ライブ配信サービス。編集・ソフトウェアテストにも対応します。',
-    cTitle:'お問い合わせ', cIntro:'英語調査・交渉代行、市場参入支援、通訳・アテンドサービスなど、お気軽にご相談ください。大阪を拠点として国内外のご要望に対応いたします。',
+    cTitle:'お問い合わせ', emailLabel:'メールでのお問い合わせ', cIntro:'英語調査・交渉代行、市場参入支援、通訳・アテンドサービスなど、お気軽にご相談ください。大阪を拠点として国内外のご要望に対応いたします。',
     flName:'お名前 *', flCo:'会社名', flEmail:'メールアドレス *', flType:'お問い合わせ種別', flMsg:'メッセージ *',
     cBtn:'送 信', cNote:'通常2営業日以内にご返信いたします。',
     selOpts:['','英語調査・リサーチ','英語交渉代行','日本市場参入支援','通訳・アテンドサービス','映像制作・ライブ配信','その他'],
@@ -392,7 +399,7 @@ var L = {
     s4t:'Interpretation & Escort Services', s4d:'Accompanying clients to business meetings and technical site visits as a specialist interpreter. VIP escort available in Osaka, Kyoto, and Hyogo.',
     s5t:'Brand, Marketing & D2C Support', s5d:'Supporting video-related businesses with market research, PR, brand consulting, trade show participation, D2C strategy planning, and website creation — the full scope of sales promotion.',
     s6t:'Video Production & Live Streaming', s6d:'Video production and live streaming through an extensive network of professional partners in Japan. Editing and software testing also available.',
-    cTitle:'Get in Touch', cIntro:'Whether you need English research, negotiation support, Japan market entry assistance, or interpretation — feel free to reach out. Based in Osaka, available worldwide.',
+    cTitle:'Get in Touch', emailLabel:'Email us directly', cIntro:'Whether you need English research, negotiation support, Japan market entry assistance, or interpretation — feel free to reach out. Based in Osaka, available worldwide.',
     flName:'Name *', flCo:'Company', flEmail:'Email *', flType:'Inquiry Type', flMsg:'Message *',
     cBtn:'Send', cNote:'We will reply within 2 business days.',
     selOpts:['','English Research','English Negotiation','Japan Market Entry','Interpretation & Escort','Video Production','Other'],
@@ -407,13 +414,13 @@ function setLang(lang) {
     'hl1l','hl1v','hl2l','hl2v','hl3l','hl3v','hl4l','hl4v','prodLabel','nameRole','nameName',
     'ps1','ps2','ps3n','ps3','ps4n','ps4','ps5n','ps5','ps6',
     'svcTitle','s1t','s1d','s2t','s2d','s3t','s3d','s4t','s4d','s5t','s5d','s6t','s6d',
-    'cTitle','cIntro','flName','flCo','flEmail','flType','flMsg','cBtn','cNote','fLoc','actTitle','act2Title','act3Event','act3Title','nlAct'];
+    'cTitle','emailLabel','cIntro','flName','flCo','flEmail','flType','flMsg','cBtn','cNote','fLoc','actTitle','act2Title','act3Event','act3Title','nlAct'];
   var domIds = ['nl-about','nl-svc','nl-con','h-name','h-sub','h-desc','h-loc','h-btn',
     'msg-title','msg-p1','msg-p2','msg-close','yrs-l','a-title','a-p1','a-p2',
     'hl1l','hl1v','hl2l','hl2v','hl3l','hl3v','hl4l','hl4v','prod-label','name-role','name-main',
     'ps1','ps2','ps3n','ps3','ps4n','ps4','ps5n','ps5','ps6',
     'svc-title','s1t','s1d','s2t','s2d','s3t','s3d','s4t','s4d','s5t','s5d','s6t','s6d',
-    'c-title','c-intro','fl-name','fl-co','fl-email','fl-type','fl-msg','c-btn','c-note','f-loc','act-title','act2-title','act3-event','act3-title','nl-act'];
+    'c-title','email-label','c-intro','fl-name','fl-co','fl-email','fl-type','fl-msg','c-btn','c-note','f-loc','act-title','act2-title','act3-event','act3-title','nl-act'];
   for(var i=0;i<ids.length;i++){
     var el=document.getElementById(domIds[i]);
     if(el) el.textContent = t[ids[i]];
