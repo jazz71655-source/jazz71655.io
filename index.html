@@ -39,7 +39,6 @@ nav {
 
 .hero { min-height:100vh; background:var(--dark); display:flex; align-items:center; position:relative; overflow:hidden; padding-top:5rem; }
 .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 55% 50% at 75% 50%, rgba(201,168,76,0.09) 0%, transparent 65%); }
-.hero-line { position:absolute; top:0; bottom:0; left:54%; width:1px; background:linear-gradient(to bottom, transparent, rgba(201,168,76,0.25) 25%, rgba(201,168,76,0.25) 75%, transparent); }
 .hero-body { position:relative; z-index:2; padding:3rem 4rem; max-width:700px; }
 .eyebrow { font-family:'Cormorant Garamond',serif; color:var(--gold); font-size:0.82rem; letter-spacing:0.35em; text-transform:uppercase; margin-bottom:1.8rem; display:block; }
 .hero-name { font-family:'Cormorant Garamond',serif; color:var(--white); font-size:clamp(2.2rem,4vw,3.8rem); font-weight:300; line-height:1.1; margin-bottom:0.6rem; }
@@ -369,7 +368,7 @@ var L = {
     cTitle:'お問い合わせ', emailLabel:'メールでのお問い合わせ', cIntro:'英語調査・交渉代行、市場参入支援、通訳・アテンドサービスなど、お気軽にご相談ください。大阪を拠点として国内外のご要望に対応いたします。',
     flName:'お名前 *', flCo:'会社名', flEmail:'メールアドレス *', flType:'お問い合わせ種別', flMsg:'メッセージ *',
     cBtn:'送 信', cNote:'通常2営業日以内にご返信いたします。',
-    selOpts:['','英語調査・リサーチ','英語交渉代行','日本市場参入支援','通訳・アテンドサービス','映像制作・ライブ配信','その他'],
+    selOpts:['','翻訳・通訳・市場リサーチ','英語交渉代行','日本市場参入支援','通訳・アテンドサービス','ブランド・マーケティング・D2C支援','映像制作・ライブ配信','その他'],
     fLoc:'大阪, 日本 — 前田 康夫', nameRole:'代表', nameName:'前田 康夫', actTitle:'活動例', act2Title:'InterBee Online 2020 プレゼンテーション', act3Event:'ウェブマガジン', act3Title:'ウェブマガジンでのアピール・プレゼンテーション', nlAct:'活動例'
   },
   en: {
@@ -404,7 +403,7 @@ var L = {
     cTitle:'Get in Touch', emailLabel:'Email us directly', cIntro:'Whether you need English research, negotiation support, Japan market entry assistance, or interpretation — feel free to reach out. Based in Osaka, available worldwide.',
     flName:'Name *', flCo:'Company', flEmail:'Email *', flType:'Inquiry Type', flMsg:'Message *',
     cBtn:'Send', cNote:'We will reply within 2 business days.',
-    selOpts:['','English Research','English Negotiation','Japan Market Entry','Interpretation & Escort','Video Production','Other'],
+    selOpts:['','Translation, Interpretation & Market Research','English Negotiation','Japan Market Entry','Interpretation & Escort Services','Brand, Marketing & D2C Support','Video Production & Live Streaming','Other'],
     fLoc:'Osaka, Japan — Yasuo Maeda', nameRole:'CEO', nameName:'Yasuo Maeda', actTitle:'Activities', act2Title:'InterBee Online 2020 Presentation', act3Event:'Web Magazine', act3Title:'Web Magazine Feature & Presentation', nlAct:'Activities'
   }
 };
@@ -435,4 +434,9 @@ function setLang(lang) {
   document.getElementById('tags-jp').style.display = lang==='jp' ? '' : 'none';
   document.getElementById('tags-en').style.display = lang==='en' ? '' : 'none';
   // buttons
-  document.getE
+  document.getElementById('bjp').className = 'lbtn' + (lang==='jp' ? ' on' : '');
+  document.getElementById('ben').className = 'lbtn' + (lang==='en' ? ' on' : '');
+}
+</script>
+</body>
+</html>
